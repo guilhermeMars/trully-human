@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.tudo{
+    display: flex;
+    background-color: gainsboro;
+    border-radius: 10px;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.nomes{
+    padding: 20px;
+    font-size: 25px;
+    background-color: white;
+    width: 500px;
+    text-align: center;
+}
