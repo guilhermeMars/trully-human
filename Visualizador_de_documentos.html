@@ -6,6 +6,9 @@
     <title>Visualizador de documentos</title>
     <style>
         body {
+            background-image: url('imagens/fundo.png'); /* Substitua pelo caminho da sua imagem */
+            background-size: cover; /* Para cobrir todo o elemento body */
+            background-repeat: no-repeat; 
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             display: flex;
@@ -19,6 +22,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+        }
+
+        .material-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px;
         }
 
         .material {
@@ -41,71 +51,348 @@
             transform: scale(1.05);
         }
 
-         .material a {
+        .material a {
             text-decoration: none;
             color: #333;
         }
 
+        .no-animation .material img {
+            transition: none;
+        }
+
+        #editar-button {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            height: 70px;
+            background-color: #9932cc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #editar-button .button-inner {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #editar-button .button-inner.excluir {
+            transform: translateX(-50%);
+        }
+
+        #editar-button .button-inner.editar {
+            transform: translateX(0);
+        }
+
+        #editar-button .button-inner.criar {
+            transform: translateX(50%);
+        }
+
+        #editar-button .button-inner img {
+            width: 50px;
+            padding: 10px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 80%;
+            max-height: 80%;
+            z-index: 2;
+        }
+
+        .overlay-content button {
+            background-color: #9932cc;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .fundo-bloqueio {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .material.selecionado-para-exclusao {
+            border: 2px solid red;
+        }
+
+        #executar-button {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            height: 70px;
+            background-color: #9932cc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .button-inner-executar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .button-inner-executar img {
+            width: 50px;
+            padding: 10px;
+        }
+
+        .material.novo-material {
+            cursor: pointer;
+        }
     </style>
-
 </head>
+<body>
+    <div class="material-container">
+        <div class="material-row">
+            <div class="material" onclick="marcarParaExclusao(this)">
+                <a href="#">
+                    <img src="Imagens/material2.jpeg" alt="Material 2">
+                    <h2>Material 1</h2>
+                    <p>Descrição do material 1.</p>
+                </a>
+            </div>
 
-    <body>
-        <!-- Primeira linha de exibição -->
-        <div class="material-container">
-        <div class="material">
-            <a> <!-- para direcionar os icones a alguma página apenas acrescentar o href nestas linhas -->
-            <img src="imagens/material1.jpg" alt="Material 1">
-            <h2>Material 1</h2>
-            <p>Descrição do material 1.</p>
-        </a>  
-        </div>
+            <div class="material" onclick="marcarParaExclusao(this)">
+                <a href="#">
+                    <img src="Imagens/material3.jpg" alt="Material 3">
+                    <h2>Material 2</h2>
+                    <p>Descrição do material 2.</p>
+                </a>
+            </div>
 
-        <div class="material">
-            <a>
-            <img src="Imagens/material2.jpeg" alt="Material 2">
-            <h2>Material 2</h2>
-            <p>Descrição do material 2.</p>
-        </a>
-        </div>
-
-        <div class="material">
-            <a>
-            <img src="Imagens/material3.jpg" alt="Material 3">
-            <h2>Material 3</h2>
-            <p>Descrição do material 3.</p>
+            <div class="material" onclick="marcarParaExclusao(this)">
+                <a href="#">
+                    <img src="Imagens/material4.jpg" alt="Material 3">
+                    <h2>Material 3</h2>
+                    <p>Descrição do material 3.</p>
+                </a>
+            </div>
         </div>
     </div>
 
-        <!-- Segunda linha de exibição -->
-    <div class="material-container">
-    
-        <div class="material">
-            <a> 
-            <img src="Imagens/material4.jpg" alt="Material 4">
-            <h2>Material 4</h2>
-            <p>Descrição do material 4.</p>
-            </a>
+    <a href="#" id="editar-button" onclick="mostrarModal()">
+        <div class="button-inner">
+            <img id="iconeEditar" src="Imagens/Editar.png" alt="Editar">
         </div>
+    </a>
 
-        <div class="material-container">
-            <div class="material">
-                <a>
-                <img src="Imagens/material5.jpg" alt="Material 5">
-                <h2>Material 5</h2>
-                <p>Descrição do material 5.</p>
-                </a>
-            </div>
-        
-            <div class="material-container">
-                <div class="material">
-                    <a>
-                    <img src="Imagens/material6.jpg" alt="Material 6">
-                    <h2>Material 6</h2>
-                    <p>Descrição do material 6.</p>
-                    </a>
-                </div>
-            </div>
-            
-    </body>
-    </html>
+    <div id="paginaSobreposta" class="overlay">
+        <div class="overlay-content">
+            <h2>Editar materiais</h2>
+            <p>Uma página feita para editar os materiais existentes.</p>
+            <button id="excluirMaterial" onclick="alternarIcone('excluir')">Excluir</button>
+            <button id="criarMaterial" onclick="alternarIcone('criar')">Criar Novo Material</button>
+            <button id="editarMaterial" onclick="alternarIcone('editar')">Editar Material</button>
+            <button id="fecharPagina" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <div class="fundo-bloqueio" id="fundoBloqueio"></div>
+
+    <div id="executar-button">
+        <div class="button-inner-executar">
+            <img id="iconeExecutar" src="" alt="Executar">
+            <button id="confirmarAcao" class="editar" onclick="executarAcao()">Confirmar</button>
+            <button id="cancelarAcao" class "editar" onclick="cancelarAcao()">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        let editando = false;
+        let materialParaEditar = null;
+
+        function mostrarModal() {
+            const overlay = document.getElementById("paginaSobreposta");
+            overlay.style.display = "block";
+
+            const materials = document.querySelectorAll(".material");
+            materials.forEach(material => {
+                material.classList.add("no-animation");
+            });
+
+            const fundoBloqueio = document.getElementById("fundoBloqueio");
+            fundoBloqueio.style.display = "block";
+        }
+
+        function fecharModal() {
+            const overlay = document.getElementById("paginaSobreposta");
+            overlay.style.display = "none";
+
+            const fundoBloqueio = document.getElementById("fundoBloqueio");
+            fundoBloqueio.style.display = "none";
+        }
+
+        function marcarParaExclusao(material) {
+            if (editando) {
+                if (material.classList.contains("selecionado-para-exclusao")) {
+                    material.classList.remove("selecionado-para-exclusao");
+                } else {
+                    material.classList.add("selecionado-para-exclusao");
+                }
+            }
+        }
+
+        function alternarIcone(opcao) {
+            editando = true;
+            const iconeExecutar = document.getElementById("iconeExecutar");
+            fecharModal();
+
+            const buttonInnerEditar = document.querySelector("#editar-button .button-inner");
+            buttonInnerEditar.classList.remove("excluir", "editar", "criar");
+            document.getElementById("editar-button").style.display = "none";
+
+            const buttonInnerExecutar = document.querySelector("#executar-button .button-inner-executar");
+            buttonInnerExecutar.style.transform = "translateX(0)";
+            document.getElementById("executar-button").style.display = "block";
+
+            if (opcao === "excluir") {
+                iconeExecutar.src = "Imagens/Lixo.png";
+                buttonInnerExecutar.classList.add("excluir");
+                materialParaEditar = null;
+            } else if (opcao === "editar") {
+                iconeExecutar.src = "Imagens/Editar.png";
+                buttonInnerExecutar.classList.add("editar");
+                materialParaEditar = null;
+            } else if (opcao === "criar") {
+                iconeExecutar.src = "Imagens/Mais.png";
+                buttonInnerExecutar.classList.add("criar");
+            }
+        }
+
+        function editarNome(material) {
+            if (editando) {
+                const nomeInput = document.createElement("input");
+                nomeInput.value = material.querySelector("h2").textContent;
+                nomeInput.onblur = function() {
+                    material.querySelector("h2").textContent = this.value;
+                    this.parentNode.removeChild(this);
+                };
+                material.querySelector("h2").textContent = '';
+                material.querySelector("h2").appendChild(nomeInput);
+                nomeInput.focus();
+            }
+        }
+
+        function editarDescricao(material) {
+            if (editando) {
+                const descricaoInput = document.createElement("input");
+                descricaoInput.value = material.querySelector("p").textContent;
+                descricaoInput.onblur = function() {
+                    material.querySelector("p").textContent = this.value;
+                    this.parentNode.removeChild(this);
+                };
+                material.querySelector("p").textContent = '';
+                material.querySelector("p").appendChild(descricaoInput);
+                descricaoInput.focus();
+            }
+        }
+
+        function carregarImagem(input, imagem) {
+            if (editando) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagem.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function executarAcao() {
+            if (document.querySelector("#executar-button .button-inner-executar img").src.includes("Lixo.png")) {
+                console.log("Ação de Exclusão executada");
+                excluirMateriaisSelecionados();
+            } else if (document.querySelector("#executar-button .button-inner-executar img").src.includes("Editar.png")) {
+                console.log("Ação de Edição executada");
+                materialParaEditar = null;
+            } else if (document.querySelector("#executar-button .button-inner-executar img").src.includes("Mais.png")) {
+                console.log("Ação de Criação executada");
+                criarNovoMaterial();
+            }
+
+            editando = false;
+            document.getElementById("executar-button").style.display = "none";
+            document.getElementById("editar-button").style.display = "block";
+        }
+
+        function cancelarAcao() {
+            editando = false;
+            document.getElementById("executar-button").style.display = "none";
+            document.getElementById("editar-button").style.display = "block";
+        }
+
+        function excluirMateriaisSelecionados() {
+            const materiaisSelecionados = document.querySelectorAll(".material.selecionado-para-exclusao");
+            materiaisSelecionados.forEach(material => {
+                material.remove();
+            });
+        }
+
+        function criarNovoMaterial() {
+            const novoMaterial = document.createElement("div");
+            novoMaterial.className = "material";
+            novoMaterial.onclick = function() {
+                marcarParaExclusao(this);
+            };
+
+            const materialContainer = document.querySelector(".material-container");
+            materialContainer.appendChild(novoMaterial);
+
+            const novaImagem = document.createElement("img");
+            novaImagem.src = "Imagens/anex.png"; // Coloque a imagem padrão desejada aqui
+            novaImagem.alt = "Novo Material";
+            novaImagem.onclick = function() {
+                editarImagem(this);
+            };
+            novoMaterial.appendChild(novaImagem);
+
+            const novoTitulo = document.createElement("h2");
+            novoTitulo.textContent = "Novo Material";
+            novoTitulo.onclick = function() {
+                editarNome(this);
+            };
+            novoMaterial.appendChild(novoTitulo);
+
+            const novaDescricao = document.createElement("p");
+            novaDescricao.textContent = "Descrição do novo material.";
+            novaDescricao.onclick = function() {
+                editarDescricao(this);
+            };
+            novoMaterial.appendChild(novaDescricao);
+        }
+
+        function editarImagem(imagem) {
+            if (editando) {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.style.display = "none";
+                input.onchange = function() {
+                    carregarImagem(this, imagem);
+                };
+                input.click();
+            }
+        }
+    </script>
+</body>
+</html>
