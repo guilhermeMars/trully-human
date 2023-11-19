@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -7,10 +9,12 @@
     display: flex;
     justify-content: center;
     height: 100vh;
+    font-family: 'Inter', sans-serif;
 }
 
 a{
     text-decoration: none;
+    color: rgb(43, 43, 43);
 }
 
 .esquerda{
@@ -40,7 +44,9 @@ a{
 }
 
 .caixa-meio-texto{
-    font-size: 50px;
+    font-size: 45px;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .faq{
@@ -58,6 +64,17 @@ a{
     position: absolute;
     bottom: 2vh;
     right: 3vw;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.questionario{
+    background-color: white;
+    position: absolute;
+    top: 2vh;
+    left: 3vw;
     padding: 10px;
     font-weight: 600;
     font-size: 30px;
