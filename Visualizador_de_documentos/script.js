@@ -12,7 +12,7 @@ fundoBloqueio.style.display = "block";
 }
 
 function mostrarModal2() {
-const overlay2 = document.getElementById("paginadeCriação");
+const overlay2 = document.getElementById("paginadeCriação").style.display = "flex";
 overlay2.style.display = "block";
 
 const materials = document.querySelectorAll(".material");

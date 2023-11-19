@@ -43,14 +43,27 @@
 
     <div id="paginadeCriação" class="overlay2">
         <div class="overlay2-content">
-            <h2>Criar novo material</h2>
-            
-            <label for="m-titulo">Titulo</label>
-            <input id="m-titulo" type="text" required />
+          
+            <div>
+                <h2>Criar novo material</h2>
+            </div>
 
-            <label for="m-descricao">Descrição</label>
-            <input id="m-descricao" type="text" required/>
+                <div class="Editaveis">
+                    
+                    <div class="tituloedescricao">
+                        <label for="m-titulo">Titulo</label>
+                        <input id="m-titulo" type="text" required />
 
+                        <label for="m-descricao">Descrição</label>
+                        <input id="m-descricao" type="text" required/>
+                    </div>
+
+                    <div>
+                        <img id="iconeAnex" src="../Imagens/anex.png" alt="iconeAnex">
+                    </div>
+
+                </div>
+                
             <button id="fecharModal2" onclick="fecharModal2()">voltar</button> 
             <button id="criar" onclick="criarNovoMaterial()">Criar</button>
         </div>
@@ -68,5 +81,4 @@
 
  
 </body>
-
 </html>
