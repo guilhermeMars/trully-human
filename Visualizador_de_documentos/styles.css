@@ -16,11 +16,6 @@ body {
     overflow: hidden;
 }
 
-.onda-1,
-.onda-2,
-.onda-3 {
-    fill-opacity: 0.9;
-}
 
 .onda-1 {
     animation: moveonda-1 3s linear infinite alternate;
