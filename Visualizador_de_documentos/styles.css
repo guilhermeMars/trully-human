@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+
+.ondas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.onda-1,
+.onda-2,
+.onda-3 {
+    fill-opacity: 0.9;
+}
+
+.onda-1 {
+    animation: moveonda-1 3s linear infinite alternate;
+}
+
+@keyframes moveonda-1 {
+    from {
+        transform: translateX(-50%) scaleX(1.5);
+    }
+}
+
+.onda-2 {
+    animation: moveonda-2 3s 1.2s linear infinite alternate;
+}
+
+@keyframes moveonda-2 {
+    from {
+        transform: translateX(-25%) scaleX(1.5);
+    }
+}
+
+.onda-3 {
+    animation: moveonda-3 3s 1.5s linear infinite alternate;
+}
+
+@keyframes moveonda-3 {
+    from {
+        transform: translateX(-15%) scaleX(1.5);
+    }
+
+}

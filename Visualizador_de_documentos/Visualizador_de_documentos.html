@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de documentos</title>
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="materials.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modal.css">
+
+</head>
+
+<body>
+    <svg class="ondas" xmlns="http://www.w3.org/2000/svg"viewBox="0 0 1440 320">
+        <path class="onda-1" fill="#9932cc"fill-opacity="0.9"d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,208C672,213,768,171,864,176C960,181,1056,235,1152,229.3C1248,224,1344,160,1392,128L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+        <path class="onda-2" fill="#9C44CC" fill-opacity="0.8" d="M0,288L48,272C96,256,192,224,288,181.3C384,139,480,85,576,96C672,107,768,181,864,186.7C960,192,1056,128,1152,96C1248,64,1344,64,1392,64L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+        <path class="onda-3" fill="#B25ACC" fill-opacity="0.4" d="M0,32L48,42.7C96,53,192,75,288,106.7C384,139,480,181,576,208C672,235,768,245,864,234.7C960,224,1056,192,1152,176C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+    <div class="material-container"></div>
+
+    <a href="#" id="editar-button" onclick="mostrarModal()">
+        <div class="button-inner">
+            <img id="iconeEditar" src="../Imagens/Editar.png" alt="Editar">
+        </div>
+    </a>
+
+    <div id="paginaSobreposta" class="overlay">
+        <div class="overlay-content">
+            <h2>Editar materiais</h2>
+            <p>Uma página feita para editar os materiais existentes.</p>
+            <button id="excluirMaterial" onclick="alternarIcone('excluir')">Excluir</button>
+            <button id="criarMaterial" onclick="mostrarModal2('criar')">Criar Novo Material</button>
+            <button id="editarMaterial" onclick="alternarIcone('editar')">Editar Material</button>
+            <button id="fecharPagina" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="paginadeCriação" class="overlay2">
+        <div class="overlay2-content">
+            <h2>Criar novo material</h2>
+            <button id="fecharModal2" onclick="fecharModal2()">voltar</button> 
+            <button id="criar" onclick="criarNovoMaterial()">Criar</button>
+        </div>
+    </div>
+
+    <div class="fundo-bloqueio" id="fundoBloqueio"></div>
+
+    <div id="executar-button">
+        <div class="button-inner-executar">
+            <img id="iconeExecutar" src="" alt="Executar">
+            <button id="confirmarAcao" class="editar" onclick="executarAcao()">Confirmar</button>
+            <button id="cancelarAcao" class="editar" onclick="cancelarAcao()">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        let editando = false;
+        let materialParaEditar = null;
+
+
+
+        function mostrarModal() {
+    const overlay = document.getElementById("paginaSobreposta");
+    overlay.style.display = "block";
+
+    const fundoBloqueio = document.getElementById("fundoBloqueio");
+    fundoBloqueio.style.display = "block";
+}
+
+function mostrarModal2() {
+    const overlay2 = document.getElementById("paginadeCriação");
+    overlay2.style.display = "block";
+
+    const materials = document.querySelectorAll(".material");
+
+    if (editando) {
+        const opcaoAtual = document.querySelector("#executar-button .button-inner-executar").classList[1];
+
+        if (opcaoAtual === "excluir") {
+            materials.forEach(material => {
+                marcarParaExclusao(material);
+            });
+        }
+    }
+
+    const fundoBloqueio = document.getElementById("fundoBloqueio");
+    fundoBloqueio.style.display = "block";
+}
+
+        function fecharModal2(){
+            const overlay2 = document.getElementById("paginadeCriação");
+            overlay2.style.display = "none";
+
+            const fundoBloqueio = document.getElementById("fundoBloqueio");
+            fundoBloqueio.style.display = "none";
+        }
+
+        function fecharModal() {
+            const overlay = document.getElementById("paginaSobreposta");
+            overlay.style.display = "none";
+
+            const fundoBloqueio = document.getElementById("fundoBloqueio");
+            fundoBloqueio.style.display = "none";
+        }
+
+        function marcarParaExclusao(material) {
+    const opcaoAtual = document.querySelector("#executar-button .button-inner-executar").classList[1];
+
+    if (opcaoAtual === "excluir") {
+        material.classList.toggle("selecionado-para-exclusao");
+    } else {
+        const materiais = document.querySelectorAll(".material");
+        materiais.forEach(mat => {
+            mat.classList.remove("selecionado-para-exclusao");
+        });
+    }
+}
+
+
+function alternarIcone(opcao) {
+    editando = true;
+    const iconeExecutar = document.getElementById("iconeExecutar");
+    fecharModal();
+
+    const buttonInnerEditar = document.querySelector("#editar-button .button-inner");
+    buttonInnerEditar.classList.remove("excluir", "editar", "criar");
+    document.getElementById("editar-button").style.display = "none";
+
+    const buttonInnerExecutar = document.querySelector("#executar-button .button-inner-executar");
+    buttonInnerExecutar.style.transform = "translateX(0)";
+    document.getElementById("executar-button").style.display = "block";
+
+    if (opcao === "excluir") {
+        iconeExecutar.src = "../Imagens/Lixo.png";
+        buttonInnerExecutar.classList.add("excluir");
+
+        // Adicione esta parte para marcar os materiais para exclusão
+        const materials = document.querySelectorAll(".material");
+        materials.forEach(material => {
+            marcarParaExclusao(material);
+        });
+
+        materialParaEditar = null;
+        editando = false;
+    } else if (opcao === "editar") {
+        iconeExecutar.src = "../Imagens/Editar.png";
+        buttonInnerExecutar.classList.add("editar");
+        materialParaEditar = null;
+    } else if (opcao === "criar") {
+        iconeExecutar.src = "../Imagens/Mais.png";
+        buttonInnerExecutar.classList.add("criar");
+        editando = false;
+    }
+}
+
+        function carregarImagem(input, imagem) {
+            if (editando) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagem.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function executarAcao() {
+    if (document.querySelector("#executar-button .button-inner-executar img").src.includes("Lixo.png")) {
+        console.log("Ação de Exclusão executada");
+        excluirMateriaisSelecionados();
+    } else if (document.querySelector("#executar-button .button-inner-executar img").src.includes(
+            "Editar.png")) {
+        console.log("Ação de Edição executada");
+    } else if (document.querySelector("#executar-button .button-inner-executar img").src.includes("Mais.png")) {
+        console.log("Ação de Criação executada");
+        criarNovoMaterial();
+    }
+
+    editando = false;
+    document.getElementById("executar-button").style.display = "none";
+    document.getElementById("editar-button").style.display = "block";
+}
+
+
+        function cancelarAcao() {
+    if (materialParaEditar) {
+        reverterAlteracoes(materialParaEditar);
+        materialParaEditar = null;
+    } else {
+        const materiaisSelecionados = document.querySelectorAll(".material.selecionado-para-exclusao");
+        materiaisSelecionados.forEach(material => {
+            reverterAlteracoes(material);  // Reverter apenas as alterações necessárias
+        });
+    }
+
+    editando = false;
+    document.getElementById("executar-button").style.display = "none";
+    document.getElementById("editar-button").style.display = "block";
+}
+
+
+
+function reverterAlteracoes(material) {
+    material.classList.remove("selecionado-para-exclusao");
+    material.classList.remove("no-animation");
+
+    const originalNome = material.dataset.originalNome || "Nome do Material";
+    const originalDescricao = material.dataset.originalDescricao || "Descrição do material.";
+
+    material.querySelector("h2").textContent = originalNome;
+    material.querySelector("p").textContent = originalDescricao;
+
+    const imagemInput = material.querySelector('input[type="file"]');
+    if (imagemInput && imagemInput.files.length > 0) {
+        const file = imagemInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            material.querySelector("img").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        material.querySelector("img").src = "../Imagens/anex.png";
+    }
+}
+
+
+
+        function excluirMateriaisSelecionados() {
+            const materiaisSelecionados = document.querySelectorAll(".material.selecionado-para-exclusao");
+            materiaisSelecionados.forEach(material => {
+                material.remove();
+            });
+        }
+
+        function criarNovoMaterial() {
+            fecharModal2();
+            fecharModal();
+            const novoMaterial = document.createElement("div");
+            novoMaterial.className = "material";
+            novoMaterial.onclick = function () {
+                marcarParaExclusao(this);
+            };
+
+            const materialContainer = document.querySelector(".material-container");
+            materialContainer.appendChild(novoMaterial);
+
+            const novaImagem = document.createElement("img");
+            novaImagem.src = "../Imagens/anex.png"; 
+            novaImagem.alt = "Novo Material";
+            novaImagem.onclick = function () {
+                editarImagem(this);
+            };
+            novoMaterial.appendChild(novaImagem);
+
+            const novoTitulo = document.createElement("h2");
+            novoTitulo.textContent = "Novo Material";
+            novoTitulo.onclick = function () {
+                editarNome(this);
+            };
+            novoMaterial.appendChild(novoTitulo);
+
+            const novaDescricao = document.createElement("p");
+            novaDescricao.textContent = "Descrição do novo material.";
+            novaDescricao.onclick = function () {
+                editarDescricao(this);
+            };
+            novoMaterial.appendChild(novaDescricao);
+        }
+
+
+        function editarImagem(imagem) {
+            if (editando) {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.style.display = "none";
+                input.onchange = function () {
+                    carregarImagem(this, imagem);
+                };
+                input.click();
+            }
+        }
+    </script>
+</body>
+
+</html>
