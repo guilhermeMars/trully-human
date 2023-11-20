@@ -1,5 +1,8 @@
 function submitForm(){
     // window.alert("teste");
+    const popup = document.getElementById('popup');
+    const p_inner = document.getElementById('p_inner');
+
     const perguntas = []
     try{
         perguntas.push(document.querySelector('input[name="pergunta01"]:checked').value);
@@ -31,14 +34,32 @@ function submitForm(){
         }
     }
     if(count_ansiedade >= count_depressao && count_ansiedade >= count_raiva && count_ansiedade >= count_controle){
-        window.alert("Seu perfil se aproxima mais da: Ansiedade");
+        popup.classList.add('active');
+        p_inner.innerHTML = "Seu perfil se aproxima mais da: <strong>Ansiedade </strong>";
     } else if(count_depressao > count_ansiedade && count_depressao >= count_raiva && count_depressao >= count_controle){
-        window.alert("Seu perfil se aproxima mais de: Depressão");
+        popup.classList.add('active');
+        p_inner.innerHTML = "Seu perfil se aproxima mais da: <strong>Depressão </strong>";
     } else if(count_raiva > count_ansiedade && count_raiva > count_depressao && count_raiva >= count_controle){
-        window.alert("Seu perfil se aproxima mais da: Raiva");
+        popup.classList.add('active');
+        p_inner.innerHTML = "Seu perfil se aproxima mais da: <strong>Raiva </strong>";
     } else if(count_controle > count_ansiedade && count_controle > count_depressao && count_controle > count_raiva){
-        window.alert("Seu perfil se aproxima mais do: Controle Emocional");
+        popup.classList.add('active');
+        p_inner.innerHTML = "Seu perfil se aproxima mais da: <strong>Controle emocional </strong>";
     } else{
         window.alert("Erro de redirecionamento!")
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    closePopupBtn.addEventListener('click', function () {
+    popup.classList.remove('active'); // Remove a classe "active" para ocultar o pop-up
+    });
+
+    // Fechar o pop-up se o usuário clicar fora da área do conteúdo do pop-up
+    window.addEventListener('click', function (event) {
+    if (event.target === popup) {
+        popup.classList.remove('active');
+    }
+    });
+});
