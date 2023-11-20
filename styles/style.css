@@ -18,13 +18,15 @@ a{
 }
 
 .esquerda{
-    background-color: #D2D4D4;
+    background-image: url('../Imagens/fundo-home-esquerda.png');
+    background-size: cover;
     height: 100vh;
     width: 100vw;
 }
 
 .direita{
-    background-color: #A70EEF;
+    background-image: url('../Imagens/fundo-home-direita.png');
+    background-size: cover;
     height: 100vh;
     width: 100vw;
 }
