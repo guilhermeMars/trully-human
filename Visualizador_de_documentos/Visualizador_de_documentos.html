@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de documentos</title>
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="materials.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <svg class="ondas" xmlns="http://www.w3.org/2000/svg"viewBox="0 0 1440 320">
+        <path class="onda-1" fill="#9932cc"fill-opacity="0.9"d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,208C672,213,768,171,864,176C960,181,1056,235,1152,229.3C1248,224,1344,160,1392,128L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+        <path class="onda-2" fill="#9C44CC" fill-opacity="0.8" d="M0,288L48,272C96,256,192,224,288,181.3C384,139,480,85,576,96C672,107,768,181,864,186.7C960,192,1056,128,1152,96C1248,64,1344,64,1392,64L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+        <path class="onda-3" fill="#B25ACC" fill-opacity="0.4" d="M0,32L48,42.7C96,53,192,75,288,106.7C384,139,480,181,576,208C672,235,768,245,864,234.7C960,224,1056,192,1152,176C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+    <div class="material-container"></div>
+
+    <a href="#" id="editar-button" onclick="mostrarModal()">
+        <div class="button-inner">
+            <img id="iconeEditar" src="../Imagens/Editar.png" alt="Editar">
+        </div>
+    </a>
+
+    <div id="paginaSobreposta" class="overlay">
+        <div class="overlay-content">
+            <h2>Editar materiais</h2>
+            <p>Uma página feita para editar os materiais existentes.</p>
+            <button id="excluirMaterial" onclick="alternarIcone('excluir')">Excluir</button>
+            <button id="criarMaterial" onclick="mostrarModal2('criar')">Criar Novo Material</button>
+            <button id="editarMaterial" onclick="alternarIcone('editar')">Editar Material</button>
+            <button id="fecharPagina" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+
+    <div id="paginadeCriação" class="overlay2">
+        <div class="overlay2-content">
+          
+            <div>
+                <h2>Criar novo material</h2>
+            </div>
+
+                <div class="Editaveis">
+                    
+                    <div class="tituloedescricao">
+                        <label for="m-titulo">Titulo</label>
+                        <input id="m-titulo" type="text" required />
+
+                        <label for="m-descricao">Descrição</label>
+                        <input id="m-descricao" type="text" required/>
+                    </div>
+
+                    <div>
+                        <img id="iconeAnex" src="../Imagens/anex.png" alt="iconeAnex">
+                    </div>
+
+                </div>
+                
+            <button id="fecharModal2" onclick="fecharModal2()">voltar</button> 
+            <button id="criar" onclick="criarNovoMaterial()">Criar</button>
+        </div>
+    </div>
+
+    <div class="fundo-bloqueio" id="fundoBloqueio"></div>
+
+    <div id="executar-button">
+        <div class="button-inner-executar">
+            <img id="iconeExecutar" src="" alt="Executar">
+            <button id="confirmarAcao" class="editar" onclick="executarAcao()">Confirmar</button>
+            <button id="cancelarAcao" class="editar" onclick="cancelarAcao()">Cancelar</button>
+        </div>
+    </div>
+
+ 
+</body>
+</html>
