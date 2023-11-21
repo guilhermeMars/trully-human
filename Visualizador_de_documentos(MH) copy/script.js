@@ -55,7 +55,6 @@ function fecharModal() {
     fundoBloqueio.style.display = "none";
 }
 
-// Adicionando eventos aos botões
 document.getElementById("criarButton").addEventListener("click", criarNovoMaterial);
 document.getElementById("voltarButton").addEventListener("click", fecharModal);
 
