@@ -23,16 +23,10 @@ const closeUpdate = () => document.getElementById('Update')
 document.getElementById('closeUpdate')
     .addEventListener('click', closeUpdate)
 
-                // JavaScript para controlar o comportamento dos modais
-const updateModal = document.getElementById('Update');
-const cancelUpdateButton = document.getElementById('cancelUpdate');
+// JavaScript para controlar o comportamento dos modais
 const updateButton = document.querySelector('form[name="updateResourceForm"] button[name="atualizar"]');
-    
-cancelUpdateButton.addEventListener('click', () => {
-     closeUpdate();
-});
-    
+
 updateButton.addEventListener('click', () => {
-    const form = document.querySelector('form[name="updateResourceForm"]');
+    const form = document.forms['updateResourceForm'];
     form.submit();
 });

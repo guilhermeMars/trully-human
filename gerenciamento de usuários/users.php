@@ -35,7 +35,7 @@
         <button type="button" class="button purple mobile" id="cadastrarCliente">Cadastrar Recurso</button>
         <table class="records">
             <thead>
-                <tr data-id="<?php echo $row["id"]; ?>">
+                <tr>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>E-mail</th>
