@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="materials.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="animate.css">
     <script src="script.js"></script>
 </head>
 
@@ -29,56 +30,48 @@
         </div>
     </a>
 
-    <div id="paginaSobreposta" class="overlay">
-        <div class="overlay-content">
-            <h2>Editar materiais</h2>
-            <p>Uma página feita para editar os materiais existentes.</p>
-            <button id="excluirMaterial" onclick="alternarIcone('excluir')">Excluir</button>
-            <button id="criarMaterial" onclick="mostrarModal2('criar')">Criar Novo Material</button>
-            <button id="editarMaterial" onclick="alternarIcone('editar')">Editar Material</button>
-            <button id="fecharPagina" onclick="fecharModal()">Fechar</button>
-        </div>
-    </div>
+    <div id="paginadeCriação" class="overlay">
+        <div class="row no-gutters">
+            <div class="col-md-7">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+                    <h2 class="mb-4">Criar material</h2>
+                    <div id="form-message-warning" class="mb-4"></div> 
 
+                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="label" for="name">Titulo</label>
+                                    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="label" for="#">Descrição</label>
+                                    <textarea name="Descricao" class="form-control" id="Descricao" cols="30" rows="4" placeholder="Descrição"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="button" value="Voltar" class="btn btn-primary" id="voltarButton" onclick="fecharModal()">
+                                    <input type="button" value="Criar" class="btn btn-primary" id="criarButton" onclick="criarNovoMaterial()" >
 
-    <div id="paginadeCriação" class="overlay2">
-        <div class="overlay2-content">
-          
-            <div>
-                <h2>Criar novo material</h2>
-            </div>
-
-                <div class="Editaveis">
-                    
-                    <div class="tituloedescricao">
-                        <label for="m-titulo">Titulo</label>
-                        <input id="m-titulo" type="text" required />
-
-                        <label for="m-descricao">Descrição</label>
-                        <input id="m-descricao" type="text" required/>
-                    </div>
-
-                    <div>
-                        <img id="iconeAnex" src="../Imagens/anex.png" alt="iconeAnex">
-                    </div>
-
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                
-            <button id="fecharModal2" onclick="fecharModal2()">voltar</button> 
-            <button id="criar" onclick="criarNovoMaterial()">Criar</button>
+            </div>
+            <div class="col-md-5 d-flex align-items-stretch">
+                <div class="info-wrap w-100 p-5 img" style="background-image: url(../Imagens/anex.png);">
+      </div>
+            </div>
         </div>
     </div>
 
     <div class="fundo-bloqueio" id="fundoBloqueio"></div>
 
-    <div id="executar-button">
-        <div class="button-inner-executar">
-            <img id="iconeExecutar" src="" alt="Executar">
-            <button id="confirmarAcao" class="editar" onclick="executarAcao()">Confirmar</button>
-            <button id="cancelarAcao" class="editar" onclick="cancelarAcao()">Cancelar</button>
-        </div>
-    </div>
-
- 
+    
 </body>
 </html>
