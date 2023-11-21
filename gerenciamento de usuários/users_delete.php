@@ -25,7 +25,6 @@
         } else {
             echo "Erro ao excluir registro";
         }
-
         $conn->close();
     }
 ?>

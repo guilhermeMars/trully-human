@@ -1,7 +1,9 @@
 <?php
+    //Requerimento de informações de outras operações.
     require_once('users_config.php');
     require_once('users_create.php');
     require_once('users_delete.php');
+    require_once('users_edit.php');
 
     //Carrega dados do BD na página
     $sql = "SELECT id, nome, email, telefone, tipo_usuario FROM users";
@@ -11,6 +13,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Cabeçalho e metadados -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +27,7 @@
     <title>Gerênciamento de Recursos</title>
 </head>
 <body>
+    <!-- Estrutura HTML -->
     <header>
         <h1 class="header-title">Gerênciamento de Recursos</h1>
     </header>
@@ -42,7 +46,7 @@
             </thead>
             <tbody>
                 <?php
-                    // Exibir os dados na tabela
+                    //Loop sobre os resultados do banco de dados e exibe na tabela
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
@@ -52,11 +56,11 @@
                             echo "<td>" . $row["telefone"] . "</td>";
                             echo "<td>" . $row["tipo_usuario"] . "</td>";
                             echo "<td class=acao>";
-                            //Editar
+                            //Botão Editar
                             echo '<form action="users_edit.php" method="POST">';
-                            echo '<button type="button" class="button green editar-btn" data-id="' . $row["id"] . '">Editar</button>';
+                            echo '<button type="button" class="button green editar-btn">Editar</button>';
                             echo '</form>';
-                            //Excluir
+                            //Botão Excluir
                             echo '<form action="users_delete.php" method="POST">';
                             echo '<input type="hidden" name="id" value="' . $row["id"] . '">';
                             echo '<button type="submit" class="button red" name="excluir">Excluir</button>';
@@ -69,19 +73,20 @@
                     }
                 ?>
                 <script>
-                    // Capturar os botões de edição
+                    // JavaScript para interação com os botões de edição
                     const editButtons = document.querySelectorAll('.editar-btn');
 
-                    // Adicionar evento de clique a cada botão de edição
+                    // Captura e manipulação dos dados para preencher o formulário de atualização
                     editButtons.forEach(button => {
                         button.addEventListener('click', () => {
                             const row = button.closest('tr');
-                            const id = row.dataset.id;
+                            const id = row.cells[0].innerText;
                             const nome = row.cells[1].innerText;
                             const email = row.cells[2].innerText;
                             const telefone = row.cells[3].innerText;
                             const tipo_usuario = row.cells[4].innerText;
 
+                            document.querySelector('input[name="idUpdate"]').value = id;
                             document.querySelector('input[name="nomeUpdate"]').value = nome;
                             document.querySelector('input[name="emailUpdate"]').value = email;
                             document.querySelector('input[name="telefoneUpdate"]').value = telefone;
@@ -94,10 +99,6 @@
                                     break;
                                 }
                             }
-
-                            // Adicionar o ID ao formulário para identificar o usuário a ser atualizado
-                            document.querySelector('input[name="idUpdate"]').value = id;
-
                             // Abrir o modal
                             openUpdate();
                         });
@@ -105,6 +106,7 @@
                 </script>
             </tbody>
         </table>
+        <!-- Modal de Adicionar Recurso -->
         <div class="modal" id="modal">
             <div class="modal-content">
                 <header class="modal-header">
@@ -121,7 +123,6 @@
                         <option value="administrador">Administrador</option>
                     </select>
                     <input type="hidden" name="id">
-
                     <footer class="modal-footer">
                         <button type="submit" class="button green" name="salvar">Salvar</button>
                         <button class="button purple">Cancelar</button>
@@ -129,7 +130,7 @@
                 </form>
             </div>
         </div>
-
+        <!-- Modal de Atualizar Recurso -->
         <div class="modal" id="Update">
             <div class="modal-content">
                 <header class="modal-header">
@@ -137,6 +138,7 @@
                     <span class="modal-close" id="closeUpdate">&#10006;</span>
                 </header>
                 <form action="users.php" method="POST" class="modal-form" name="updateResourceForm">
+                    <input type="text" name="idUpdate" class="modal-field" placeholder="ID" readonly style="pointer-events: none">
                     <input type="text" name="nomeUpdate" class="modal-field" placeholder="Nome Completo">
                     <input type="email" name="emailUpdate" class="modal-field" placeholder="E-mail">
                     <input type="text" name="telefoneUpdate" class="modal-field" placeholder="Telefone ">
@@ -146,7 +148,6 @@
                         <option value="administrador">Administrador</option>
                     </select>
                     <input type="hidden" name="idUpdate">
-
                     <footer class="modal-footer">
                         <button type="submit" class="button green" name="atualizar">Atualizar</button>
                         <button class="button purple" id="cancelUpdate">Cancelar</button>
@@ -154,21 +155,6 @@
                 </form>
             </div>
         </div>
-        <script>
-            const updateModal = document.getElementById('Update');
-            const cancelUpdateButton = document.getElementById('cancelUpdate');
-            const updateButton = document.querySelector('form[name="updateResourceForm"] button[name="atualizar"]');
-
-            cancelUpdateButton.addEventListener('click', () => {
-                closeUpdate();
-            });
-
-            updateButton.addEventListener('click', () => {
-                const form = document.querySelector('form[name="updateResourceForm"]');
-                form.submit();
-            });
-        </script>
-        
     </main>
     <footer>
 

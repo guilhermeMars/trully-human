@@ -8,13 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['atualizar'])) {
     $telefone = $_POST['telefoneUpdate'];
     $tipo_usuario = $_POST['tipo_usuarioUpdate'];
 
-    $sql = "UPDATE users SET nome='$nome', email='$email', telefone='$telefone', tipo_usuario='$tipo_usuario' WHERE id='$id'";
-
-    if ($conn->query($sql) === TRUE) {
+    $sql_update = "UPDATE users SET nome='$nome', email='$email', telefone='$telefone', tipo_usuario='$tipo_usuario' WHERE id='$id'";
+    if ($conn->query($sql_update) === TRUE) {
         header("Location: users.php");
         exit();
     } else {
-        echo "Erro ao atualizar os dados: " . $conn->error;
+        echo "Erro ao atualizar os dados: " . $conn->error; // Adicionado para exibir o erro
     }
 }
 ?>
