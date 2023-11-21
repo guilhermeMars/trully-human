@@ -1,0 +1,65 @@
+#editar-button {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    background-color: #9932cc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 50px;
+}
+
+#editar-button .button-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    width: 50px;
+}
+
+#editar-button .button-inner.excluir {
+    transform: translateX(-50%);
+}
+
+#editar-button .button-inner.editar {
+    transform: translateX(0);
+}
+
+#editar-button .button-inner.criar {
+    transform: translateX(50%);
+}
+
+#editar-button .button-inner img {
+    width: 100%;
+    padding: 10px;
+}
+
+#executar-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    height: 70px;
+    background-color: #9932cc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.button-inner-executar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #9932cc;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.button-inner-executar img {
+    width: 50px;
+    padding: 10px;
+}
+
+#editar-button:hover {
+    background-color: #7a2491; /* Cor mais escura para o efeito hover */
+}
