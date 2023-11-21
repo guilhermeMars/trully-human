@@ -1,3 +1,13 @@
+<?php
+    if(isset($_POST['salvar']))
+    {
+        print_r($_POST['nome']);
+        print_r($_POST['email']);
+        print_r($_POST['telefone']);
+        print_r($_POST['tipo_usuario']);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -31,40 +41,10 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Aline Silveira Cordeiro</td>
-                    <td>aline@gmail.com</td>
-                    <td>+55 19 99593-1682</td>
-                    <td>Administrador</td>
-                    <td>
-                        <button type="button" class="button green">editar</button>
-                        <button type="button" class="button red">excluir</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bianca Pessin Avelino</td>
-                    <td>bianca@gmail.com</td>
-                    <td>+55 19 98702-2101</td>
-                    <td>Administrador</td>
-                    <td>
-                        <button type="button" class="button green">editar</button>
-                        <button type="button" class="button red">excluir</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Guilherme Martins Spiandorin</td>
-                    <td>guilherme@gmail.com</td>
-                    <td>+55 19 99900-7601</td>
-                    <td>Líder</td>
-                    <td>
-                        <button type="button" class="button green">editar</button>
-                        <button type="button" class="button red">excluir</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Paulo Henrique Angelino Braga</td>
-                    <td>paulo@gmail.com</td>
-                    <td>+55 31 99762-0484</td>
-                    <td>Usuário</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <button type="button" class="button green">editar</button>
                         <button type="button" class="button red">excluir</button>
@@ -78,18 +58,18 @@
                     <h2>Novo Recurso</h2>
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
-                <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Nome do Recurso">
-                    <input type="email" class="modal-field" placeholder="E-mail do Recurso">
-                    <input type="text" class="modal-field" placeholder="Telefone do Recurso">
-                    <select id="tipo-usuario" class="modal-field" placeholder="Tipo de Usuário">
+                <form action="users.html" method="POST" class="modal-form">
+                    <input type="text" name="nome" class="modal-field" placeholder="Nome do Recurso">
+                    <input type="email" name="email" class="modal-field" placeholder="E-mail do Recurso">
+                    <input type="text" name="telefone" class="modal-field" placeholder="Telefone do Recurso">
+                    <select id="tipo-usuario" name="tipo_usuario" class="modal-field" placeholder="Tipo de Usuário">
                         <option value="usuario">Usuário</option>
                         <option value="lider">Líder</option>
                         <option value="administrador">Administrador</option>
                     </select>
                 </form>
                 <footer class="modal-footer">
-                    <button class="button green">Salvar</button>
+                    <button class="button green" name="salvar">Salvar</button>
                     <button class="button purple">Cancelar</button>
                 </footer>
             </div>

@@ -1,0 +1,177 @@
+<?php
+    require_once('users_config.php');
+    require_once('users_create.php');
+    require_once('users_delete.php');
+
+    //Carrega dados do BD na página
+    $sql = "SELECT id, nome, email, telefone, tipo_usuario FROM users";
+    $result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="users_main.css">
+    <link rel="stylesheet" href="users_button.css">
+    <link rel="stylesheet" href="users_records.css">
+    <link rel="stylesheet" href="users_modal.css">
+    <script src="main.js" defer></script>
+    <title>Gerênciamento de Recursos</title>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Gerênciamento de Recursos</h1>
+    </header>
+    <main>
+        <button type="button" class="button purple mobile" id="cadastrarCliente">Cadastrar Recurso</button>
+        <table class="records">
+            <thead>
+                <tr data-id="<?php echo $row["id"]; ?>">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Tipo de Usuário</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    // Exibir os dados na tabela
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["id"] . "</td>";
+                            echo "<td>" . $row["nome"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td>" . $row["telefone"] . "</td>";
+                            echo "<td>" . $row["tipo_usuario"] . "</td>";
+                            echo "<td class=acao>";
+                            //Editar
+                            echo '<form action="users_edit.php" method="POST">';
+                            echo '<button type="button" class="button green editar-btn" data-id="' . $row["id"] . '">Editar</button>';
+                            echo '</form>';
+                            //Excluir
+                            echo '<form action="users_delete.php" method="POST">';
+                            echo '<input type="hidden" name="id" value="' . $row["id"] . '">';
+                            echo '<button type="submit" class="button red" name="excluir">Excluir</button>';
+                            echo '</form>';
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>Nenhum resultado encontrado</td></tr>";
+                    }
+                ?>
+                <script>
+                    // Capturar os botões de edição
+                    const editButtons = document.querySelectorAll('.editar-btn');
+
+                    // Adicionar evento de clique a cada botão de edição
+                    editButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const row = button.closest('tr');
+                            const id = row.dataset.id;
+                            const nome = row.cells[1].innerText;
+                            const email = row.cells[2].innerText;
+                            const telefone = row.cells[3].innerText;
+                            const tipo_usuario = row.cells[4].innerText;
+
+                            document.querySelector('input[name="nomeUpdate"]').value = nome;
+                            document.querySelector('input[name="emailUpdate"]').value = email;
+                            document.querySelector('input[name="telefoneUpdate"]').value = telefone;
+
+                            const select = document.querySelector('select[name="tipo_usuarioUpdate"]');
+                            const options = select.options;
+                            for (let i = 0; i < options.length; i++) {
+                                if (options[i].text === tipo_usuario) {
+                                    select.selectedIndex = i;
+                                    break;
+                                }
+                            }
+
+                            // Adicionar o ID ao formulário para identificar o usuário a ser atualizado
+                            document.querySelector('input[name="idUpdate"]').value = id;
+
+                            // Abrir o modal
+                            openUpdate();
+                        });
+                    });
+                </script>
+            </tbody>
+        </table>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Novo Recurso</h2>
+                    <span class="modal-close" id="modalClose">&#10006;</span>
+                </header>
+                <form action="users.php" method="POST" class="modal-form" name="addResourceForm">
+                    <input type="text" name="nome" class="modal-field" placeholder="Nome Completo">
+                    <input type="email" name="email" class="modal-field" placeholder="E-mail">
+                    <input type="text" name="telefone" class="modal-field" placeholder="Telefone ">
+                    <select id="tipo_usuario" name="tipo_usuario" class="modal-field" placeholder="Tipo de Usuário">
+                        <option value="usuario">Usuário</option>
+                        <option value="lider">Líder</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                    <input type="hidden" name="id">
+
+                    <footer class="modal-footer">
+                        <button type="submit" class="button green" name="salvar">Salvar</button>
+                        <button class="button purple">Cancelar</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal" id="Update">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Atualizar Recurso</h2>
+                    <span class="modal-close" id="closeUpdate">&#10006;</span>
+                </header>
+                <form action="users.php" method="POST" class="modal-form" name="updateResourceForm">
+                    <input type="text" name="nomeUpdate" class="modal-field" placeholder="Nome Completo">
+                    <input type="email" name="emailUpdate" class="modal-field" placeholder="E-mail">
+                    <input type="text" name="telefoneUpdate" class="modal-field" placeholder="Telefone ">
+                    <select id="tipo_usuario" name="tipo_usuarioUpdate" class="modal-field" placeholder="Tipo de Usuário">
+                        <option value="usuario">Usuário</option>
+                        <option value="lider">Líder</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                    <input type="hidden" name="idUpdate">
+
+                    <footer class="modal-footer">
+                        <button type="submit" class="button green" name="atualizar">Atualizar</button>
+                        <button class="button purple" id="cancelUpdate">Cancelar</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+        <script>
+            const updateModal = document.getElementById('Update');
+            const cancelUpdateButton = document.getElementById('cancelUpdate');
+            const updateButton = document.querySelector('form[name="updateResourceForm"] button[name="atualizar"]');
+
+            cancelUpdateButton.addEventListener('click', () => {
+                closeUpdate();
+            });
+
+            updateButton.addEventListener('click', () => {
+                const form = document.querySelector('form[name="updateResourceForm"]');
+                form.submit();
+            });
+        </script>
+        
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

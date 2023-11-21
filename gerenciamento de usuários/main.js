@@ -1,5 +1,6 @@
 'use strict'
 
+//Create
 const openModal = () => document.getElementById('modal')
     .classList.add('active')
 
@@ -11,3 +12,13 @@ document.getElementById('cadastrarCliente')
 
 document.getElementById('modalClose')
     .addEventListener('click', closeModal)
+
+//Update
+const openUpdate = () => document.getElementById('Update')
+    .classList.add('active')
+
+const closeUpdate = () => document.getElementById('Update')
+    .classList.remove('active')
+
+document.getElementById('closeUpdate')
+    .addEventListener('click', closeUpdate)
