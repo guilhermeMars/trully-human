@@ -138,16 +138,15 @@
                     <span class="modal-close" id="closeUpdate">&#10006;</span>
                 </header>
                 <form action="users.php" method="POST" class="modal-form" name="updateResourceForm">
-                    <input type="text" name="idUpdate" class="modal-field" placeholder="ID" readonly style="pointer-events: none">
-                    <input type="text" name="nomeUpdate" class="modal-field" placeholder="Nome Completo">
-                    <input type="email" name="emailUpdate" class="modal-field" placeholder="E-mail">
-                    <input type="text" name="telefoneUpdate" class="modal-field" placeholder="Telefone ">
-                    <select id="tipo_usuario" name="tipo_usuarioUpdate" class="modal-field" placeholder="Tipo de Usuário">
+                    <input type="text" name="idUpdate" class="modal-field" readonly style="pointer-events: none">
+                    <input type="text" name="nomeUpdate" class="modal-field">
+                    <input type="email" name="emailUpdate" class="modal-field">
+                    <input type="text" name="telefoneUpdate" class="modal-field">
+                    <select id="tipo_usuario" name="tipo_usuarioUpdate" class="modal-field">
                         <option value="usuario">Usuário</option>
                         <option value="lider">Líder</option>
                         <option value="administrador">Administrador</option>
                     </select>
-                    <input type="hidden" name="idUpdate">
                     <footer class="modal-footer">
                         <button type="submit" class="button green" name="atualizar">Atualizar</button>
                         <button class="button purple" id="cancelUpdate">Cancelar</button>
