@@ -18,14 +18,14 @@ a{
 }
 
 .esquerda{
-    background-image: url('../Imagens/fundo-home-esquerda.png');
+    background-image: url('../assets/fundo-home-esquerda.png');
     background-size: cover;
     height: 100vh;
     width: 100vw;
 }
 
 .direita{
-    background-image: url('../Imagens/fundo-home-direita.png');
+    background-image: url('../assets/fundo-home-direita.png');
     background-size: cover;
     height: 100vh;
     width: 100vw;

@@ -25,7 +25,7 @@ function criarNovoMaterial() {
     materialContainer.appendChild(novoMaterial);
 
     const novaImagem = document.createElement("img");
-    novaImagem.src = "../Imagens/anex.png";
+    novaImagem.src = "../assets/anex.png";
     novaImagem.alt = "Novo Material";
     novaImagem.onclick = function () {
         editarImagem(this);
