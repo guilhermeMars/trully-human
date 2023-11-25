@@ -16,10 +16,10 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 6vh;
+    margin: 6vh 0;
 }
 
-form{
+#form_principal{
     background-color: white;
     width: 80vh;
     border-radius: 10px;
@@ -68,7 +68,7 @@ label, input{
     cursor: pointer;
 }
 
-button {
+#btn_finalizar {
     margin-top: 20px;
     background-color: #8a2be2; 
     color: #ffffff; 
