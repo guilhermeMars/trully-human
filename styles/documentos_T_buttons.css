@@ -22,17 +22,6 @@
     width: 50px;
 }
 
-#editar-button .button-inner.excluir {
-    transform: translateX(-50%);
-}
-
-#editar-button .button-inner.editar {
-    transform: translateX(0);
-}
-
-#editar-button .button-inner.criar {
-    transform: translateX(50%);
-}
 
 #editar-button .button-inner img {
     width: 100%;

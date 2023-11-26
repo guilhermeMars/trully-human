@@ -19,11 +19,11 @@
     text-align: center;
     width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out; /* Adicionada transição para o efeito de escala */
+    transition: transform 0.3s ease-in-out; 
 }
 
 .material:hover {
-    transform: scale(1.05); /* Ajustada a escala ao passar o mouse */
+    transform: scale(1.05); 
 }
 
 .material img {

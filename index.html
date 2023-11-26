@@ -6,117 +6,100 @@
     <link rel="stylesheet" href="/styles/style.css">
     <title>Trully Human</title>
     <style>
-        *{
-        margin: 0;
-        padding: 0;
-        }
-        
-        .tudo-flex{
-            display: flex;
-            justify-content: center;
-            height: 100vh;
-        }
-        
-        a{
-            text-decoration: none;
-        }
-        
-        .esquerda{
-            background-color: #D2D4D4;
-            height: 100vh;
-            width: 100vw;
-        }
-        
-        .direita{
-            background-color: #A70EEF;
-            height: 100vh;
-            width: 100vw;
-        }
-        
-        .caixa-meio{
-            background-color: white;
-            color: black;
-            margin: 40vh auto 0 auto;
-            width: 400px;
-            text-align: center;
-            padding: 20px 0px;
-            border-radius: 10px;
-        }
-        
-        .emogi{
-            font-size: 100px;
-        }
-        
-        .caixa-meio-texto{
-            font-size: 50px;
-        }
-        
-        .faq{
-            position: absolute;
-            background-color: #D9D9D9;
-            padding: 15px;
-            font-weight: 600;
-            font-size: 20px;
-            bottom: 0;
-            border-radius: 7px 7px 0 0 ;
-        }
-        
-        .sobre-nos{
-            background-color: white;
-            position: absolute;
-            bottom: 2vh;
-            right: 3vw;
-            padding: 10px;
-            font-weight: 600;
-            font-size: 30px;
-            border-radius: 5px;
-        }
+.btn-group {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    left: 120px;
+    
+}
 
-        .btn-login{
-            background-color: white;
-            position: absolute;
-            top: 2vh;
-            right: 3vw;
-            padding: 10px;
-            font-weight: 600;
-            font-size: 30px;
-            border-radius: 5px;
-        }
-    </style>
+.btn-group {
+    margin-right: 10px; /* Espaçamento entre os botões, ajuste conforme necessário */
+}
+
+.btn-group a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #9933cc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    height: 70px;
+    margin-right: 10px;
+    opacity: 0.8; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.btn-login:hover{
+    transform: scale(1.05); 
+    opacity: 1;
+}
+
+.btn-sobre-nos:hover{
+    transform: scale(1.05); 
+    opacity: 1;
+}
+
+.btn-gerenciamento:hover{
+    transform: scale(1.05); 
+    opacity: 1;
+}
+
+.btn-quiz:hover{
+    transform: scale(1.05); 
+    opacity: 1;
+}
+</style>
+
+
 </head>
+
+
 <body>
+    <div class="btn-group">
+        <div class="btn-login">
+            <a href="login.html">Login</a>
+        </div>
+        <div class="btn-sobre-nos">
+            <a href="sobre-nos.html">Sobre nós</a>
+        </div>
+        <div class="btn-gerenciamento">
+            <a href="users.html">Gerenciamento de usuários</a>
+        </div>
+        <div class="btn-quiz">
+            <a href="quiz.html">Questionário</a>
+        </div>
+    </div>
+
     <div class="tudo-flex">
         <div class="esquerda">
-            <div class="caixa-meio">
+            <div class="caixa-meio CaixaSaude">
                 <a href="Visualizador_de_documentos(MH).html">
-                    <h1 class="emogi">🧠</h1>
-                    <h2 class="caixa-meio-texto">Mental Health</h2>
+                    <div class="imagem"></div>
+                    <h2 class="caixa-meio-texto">Saúde mental</h2>
                 </a>
             </div>
         </div>
         <div class="direita">
-            <div class="caixa-meio">
+            <div class="caixa-meio CaixaTreino">
                 <a href="Visualizador_de_documentos(T).html">
-                    <h1 class="emogi">📕</h1>
+                    <div class="imagem"></div>
                     <h2 class="caixa-meio-texto">Conhecimento</h2>
                 </a>
             </div>
         </div>
+        
         <!-- <div class="faq">
             <a href="#">Como funciona a plataforma?</a>
         </div> -->
-        <div class="sobre-nos">
-            <a href="sobre-nos.html">Sobre nós</a>
-        </div>
-        <div class="btn-login">
-            <a href="login.html">Login</a>
-        </div>
-        <div class="questionario">
-            <a href="quiz.html">Qual minha tendência?</a>
-        </div>
-        <div class="gerencia">
-            <a href="users.html">Gerenciamento de Usuários</a>
-        </div>
+
     </div>
 </body>
 </html>

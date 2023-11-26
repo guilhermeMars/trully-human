@@ -14,7 +14,7 @@
 
 a{
     text-decoration: none;
-    color: rgb(43, 43, 43);
+    color: black
 }
 
 .esquerda{
@@ -22,27 +22,50 @@ a{
     background-size: cover;
     height: 100vh;
     width: 100vw;
+
 }
+
 
 .direita{
     background-image: url('../assets/fundo-home-direita.png');
     background-size: cover;
     height: 100vh;
     width: 100vw;
+
 }
 
-.caixa-meio{
-    background-color: white;
+
+.caixa-meio {
+    background-color: rgba(255, 255, 255, 0.2);
     color: black;
     margin: 40vh auto 0 auto;
     width: 400px;
     text-align: center;
     padding: 20px 0px;
     border-radius: 10px;
+    position: relative;
+    transition: transform 0.3s ease-in-out; 
 }
 
-.emogi{
-    font-size: 100px;
+.caixa-meio:hover {
+    transform: scale(1.05); 
+}
+
+.CaixaSaude .imagem{
+    background-image: url('../assets/SaudeMental.png'); 
+}
+
+.CaixaTreino .imagem{
+    background-image: url('../assets/Livro.png'); 
+}
+
+.imagem {
+
+    background-size: cover;
+    background-size: cover;
+    width: 200px; 
+    height: 200px; 
+    margin: 0 auto 10px; 
 }
 
 .caixa-meio-texto{
@@ -71,6 +94,11 @@ a{
     font-weight: 600;
     font-size: 30px;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.sobre-nos:hover{
+    transform: scale(1.05); 
 }
 
 .questionario{
@@ -82,6 +110,11 @@ a{
     font-weight: 600;
     font-size: 30px;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.questionario:hover{
+    transform: scale(1.05); 
 }
 
 .gerencia{
@@ -93,4 +126,9 @@ a{
     font-weight: 600;
     font-size: 30px;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.gerencia:hover{
+    transform: scale(1.05); 
 }
