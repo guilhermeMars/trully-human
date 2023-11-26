@@ -18,6 +18,10 @@ fundoBloqueio.style.display = "block";
 
 function criarNovoMaterial() {
     fecharModal();
+
+    const titulo = document.querySelector("#titulo")
+    const descricao = document.querySelector("#descricao")
+    
     const novoMaterial = document.createElement("div");
     novoMaterial.className = "material";
 
@@ -33,14 +37,14 @@ function criarNovoMaterial() {
     novoMaterial.appendChild(novaImagem);
 
     const novoTitulo = document.createElement("h2");
-    novoTitulo.textContent = "Novo Material";
+    novoTitulo.textContent = titulo.value;
     novoTitulo.onclick = function () {
         editarNome(this);
     };
     novoMaterial.appendChild(novoTitulo);
 
     const novaDescricao = document.createElement("p");
-    novaDescricao.textContent = "Descrição do novo material.";
+    novaDescricao.textContent = descricao.value;
     novaDescricao.onclick = function () {
         editarDescricao(this);
     };
