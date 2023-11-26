@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de perfil</title>
     <link rel="stylesheet" href="./styles/quiz.css">
+    <link rel="stylesheet" href="./styles/header_footer.css">
+    <script src="./scripts/header_footer.js"></script>
 </head>
 <body>
-    <a href="/" id="home">
+    <!-- <a href="/" id="home">
         <img src="/assets/home-icon.png" alt="Home icon">
         <h3>Home</h3>
-    </a>
+    </a> -->
     <main>
-        <form>
+        <form id="form_principal">
             <h1>Qual sua tendência emocional?</h1>
             <div id="perguntas">
                 <div class="perguta_ind">
@@ -124,7 +126,7 @@
                         </div>
                     </div>
                 </div>    
-                <button type="button" onclick="submitForm()">Finalizar</button>
+                <button type="button" onclick="submitForm()" id="btn_finalizar">Finalizar</button>
             </div>
         </form>
         <div class="popup" id="popup">
