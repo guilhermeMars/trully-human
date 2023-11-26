@@ -64,3 +64,4 @@ function fileHandle(value) {
 		html2pdf(content).save(filename.value);
 	}
 }
+

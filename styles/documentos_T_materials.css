@@ -33,9 +33,16 @@
 
 .material a {
     text-decoration: none;
-    color: #333;
 }
 
 .no-animation .material img {
     transition: none;
+}
+
+.material-container .material a {
+    text-decoration: none;
+}
+
+.material-container .Caixa {
+    text-decoration: none;
 }

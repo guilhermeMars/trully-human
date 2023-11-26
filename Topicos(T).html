@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="styles\Topicos(T).css">
-	<title>Tópicos</title>
+	<link rel="icon" href="assets/page-2.png" type="image/x-icon">
+	<title>Treinamento</title>
 </head>
 <body>
 
@@ -14,13 +15,12 @@
 			<div class="head">
 				<input type="text" placeholder="Filename" value="untitled" id="filename">
 				<select onchange="fileHandle(this.value); this.selectedIndex=0">
-					<option value="" selected="" hidden="" disabled="">File</option>
-					<option value="new">New file</option>
-					<option value="txt">Save as txt</option>
-					<option value="pdf">Save as pdf</option>
+					<option value="" selected="" hidden="" disabled="">Arquivo</option>
+					<option value="new">Novo arquivo</option>
+
 				</select>
 				<select onchange="formatDoc('formatBlock', this.value); this.selectedIndex=0;">
-					<option value="" selected="" hidden="" disabled="">Format</option>
+					<option value="" selected="" hidden="" disabled="">Formato</option>
 					<option value="h1">Heading 1</option>
 					<option value="h2">Heading 2</option>
 					<option value="h3">Heading 3</option>
@@ -30,21 +30,21 @@
 					<option value="p">Paragraph</option>
 				</select>
 				<select onchange="formatDoc('fontSize', this.value); this.selectedIndex=0;">
-					<option value="" selected="" hidden="" disabled="">Font size</option>
-					<option value="1">Extra small</option>
-					<option value="2">Small</option>
-					<option value="3">Regular</option>
-					<option value="4">Medium</option>
-					<option value="5">Large</option>
-					<option value="6">Extra Large</option>
-					<option value="7">Big</option>
+					<option value="" selected="" hidden="" disabled="">Tamanho da fonte</option>
+					<option value="1">Extra pequeno</option>
+					<option value="2">Pequeno</option>
+					<option value="3">Normal</option>
+					<option value="4">Médio</option>
+					<option value="5">Grande</option>
+					<option value="6">Extra grande</option>
+					<option value="7">Gigante</option>
 				</select>
 				<div class="color">
-					<span>Color</span>
+					<span>Cor</span>
 					<input type="color" oninput="formatDoc('foreColor', this.value); this.value='#000000';">
 				</div>
 				<div class="color">
-					<span>Background</span>
+					<span>Fundo</span>
 					<input type="color" oninput="formatDoc('hiliteColor', this.value); this.value='#000000';">
 				</div>
 			</div>
@@ -62,12 +62,10 @@
 				<button onclick="formatDoc('insertOrderedList')"><i class='bx bx-list-ol' ></i></button>
 				<button onclick="formatDoc('insertUnorderedList')"><i class='bx bx-list-ul' ></i></button>
 				<button onclick="addLink()"><i class='bx bx-link' ></i></button>
-				<button onclick="formatDoc('unlink')"><i class='bx bx-unlink' ></i></button>
-				<button id="show-code" data-active="false">&lt;/&gt;</button>
 			</div>
 		</div>
 		<div id="content" contenteditable="true" spellcheck="false">
-			Lorem, ipsum.
+			Seu texto aqui.
 		</div>
 	</div>
 	
