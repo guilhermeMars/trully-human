@@ -3,7 +3,10 @@
 }
 
 main {
-    background-color:  black;
+    background-image: url(/Imagens/1077.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
     font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: center;
