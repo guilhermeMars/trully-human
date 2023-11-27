@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var header = document.createElement("header");
     header.innerHTML = `
     <div id="header">
-        <a href="/" id="logo_header">
+        <a href="index.html" id="logo_header">
             <img src="./assets/Logo Accenture.png" alt="Logo Accenture">
         </a>
         <form id="barra_pesquisa">
