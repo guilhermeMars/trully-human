@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <button><img src="./assets/lupa.png" alt="Lupa"></button>
             <input type="text" name="barra_pesquisa" id="pesquisa_texto" value="Pesquisa">
         </form>
-        <a href="./login.html"><img src="./assets/user_logo.png" alt="login" id="user_header"></a>
+        <a href="login.html"><img src="./assets/user_logo.png" alt="login" id="user_header"></a>
     </div>
     `;
     document.body.prepend(header);
